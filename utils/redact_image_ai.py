@@ -3,7 +3,7 @@ import easyocr
 from fuzzywuzzy import fuzz
 import os
 
-reader = easyocr.Reader(['ar'])  # You can add 'en' if needed
+reader = easyocr.Reader(['ar'])  
 
 def redact_image_ai(path, phrase, threshold=70):
     image = Image.open(path).convert("RGB")
@@ -15,7 +15,7 @@ def redact_image_ai(path, phrase, threshold=70):
         similarity = fuzz.ratio(text.strip(), phrase.strip())
         print(f"Detected: {text} | Match: {similarity}%")
         if similarity >= threshold:
-            # Convert points to int and draw a polygon instead of a simple rectangle
+            
             polygon_points = [tuple(map(int, point)) for point in bbox]
             draw.polygon(polygon_points, fill="black")
 
